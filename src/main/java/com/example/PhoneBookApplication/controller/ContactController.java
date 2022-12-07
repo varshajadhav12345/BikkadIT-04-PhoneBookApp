@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -37,6 +38,12 @@ public class ContactController {
 
 		List<Contact> allContact = contactServiceI.getAllContact();
 		return new ResponseEntity<List<Contact>>(allContact, HttpStatus.OK);
+
+	}
+	@GetMapping(value = "/getContactById/{contactId}", produces = "application/json")
+	public ResponseEntity<Contact> getContactById(@PathVariable Integer contactId) {
+		Contact contact = contactServiceI.getContactById(contactId);
+		return new ResponseEntity<Contact>(contact, HttpStatus.OK);
 
 	}
 
