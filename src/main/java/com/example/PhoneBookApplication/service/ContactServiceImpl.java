@@ -3,6 +3,7 @@ package com.example.PhoneBookApplication.service;
 
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -59,5 +60,18 @@ public class ContactServiceImpl implements ContactServiceI{
 		} else {
 			return false;
 		}
+	}
+	@Override
+	public boolean deleteContactSoft(Integer id) {
+		 Contact contact = contactRepository.findById(id).get();
+		 if(contact!=null) {
+			 contact.setActiveSwitch('N');
+			 contactRepository.save(contact);
+			 return true;
+			 
+		 } else 
+		 
+		
+		return false;
 	}
 }

@@ -63,6 +63,8 @@ public class ContactController {
 		}
 
 	}
+	
+	
 	@DeleteMapping(value="/deleteContact/{contactId}")
 	public ResponseEntity<String> deleteContact(@PathVariable Integer contactId){
 		boolean deleteContact = contactServiceI.deleteContact(contactId);
@@ -75,5 +77,20 @@ public class ContactController {
 
 		}
 		
+	}
+	
+	
+	@DeleteMapping(value="/deleteContactSoft/{contactId}")
+	public ResponseEntity<String> deleteContactSoft(@PathVariable Integer contactId){
+		boolean deleteContact = contactServiceI.deleteContactSoft(contactId);
+		
+		if(deleteContact) {
+			String msg = "Contact Deleted  Successfully";
+			return new ResponseEntity<String>(msg, HttpStatus.CREATED);
+		} else {
+			return new ResponseEntity<String>("Contact not Deleted Successfully", HttpStatus.CREATED);
+
+		}
+	
 	}
 }
